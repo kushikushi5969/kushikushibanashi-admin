@@ -1,56 +1,46 @@
-"use client";
+'use client'
 
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import Typography from "@mui/material/Typography";
-import { useLogin } from "@refinedev/core";
-import { ThemedTitleV2 } from "@refinedev/mui";
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
+import { useLogin } from '@refinedev/core'
+import { ThemedTitleV2 } from '@refinedev/mui'
 
 export default function Login() {
-  const { mutate: login } = useLogin();
+  const { mutate: login } = useLogin()
 
   return (
     <Container
       style={{
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
-      <Box
-        display="flex"
-        gap="36px"
-        justifyContent="center"
-        flexDirection="column"
-      >
+      <Box display='flex' gap='36px' justifyContent='center' flexDirection='column'>
         <ThemedTitleV2
           collapsed={false}
           wrapperStyles={{
-            fontSize: "22px",
-            justifyContent: "center",
+            fontSize: '22px',
+            justifyContent: 'center',
           }}
         />
 
-        <Button
-          style={{ width: "240px" }}
-          variant="contained"
-          size="large"
-          onClick={() => login({})}
-        >
+        <Button style={{ width: '240px' }} variant='contained' size='large' onClick={() => login({})}>
           Sign in
         </Button>
-        <Typography align="center" color={"text.secondary"} fontSize="12px">
+        <Typography align='center' color={'text.secondary'} fontSize='12px'>
           Powered by
           <img
-            style={{ padding: "0 5px" }}
-            alt="Google"
-            src="https://refine.ams3.cdn.digitaloceanspaces.com/superplate-auth-icons%2Fgoogle.svg"
+            style={{ padding: '0 5px' }}
+            alt='Google'
+            src='https://refine.ams3.cdn.digitaloceanspaces.com/superplate-auth-icons%2Fgoogle.svg'
           />
           Google
         </Typography>
       </Box>
     </Container>
-  );
+  )
 }

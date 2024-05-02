@@ -1,104 +1,102 @@
-"use client";
+'use client'
 
-import { AuthBindings, GitHubBanner, Refine } from "@refinedev/core";
-import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import { RefineSnackbarProvider, notificationProvider } from "@refinedev/mui";
-import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
-import { usePathname } from "next/navigation";
-import React from "react";
+import { AuthBindings, GitHubBanner, Refine } from '@refinedev/core'
+import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar'
+import { RefineSnackbarProvider, notificationProvider } from '@refinedev/mui'
+import { SessionProvider, signIn, signOut, useSession } from 'next-auth/react'
+import { usePathname } from 'next/navigation'
+import React from 'react'
 
-import routerProvider from "@refinedev/nextjs-router";
+import routerProvider from '@refinedev/nextjs-router'
 
-import { ColorModeContextProvider } from "@contexts/color-mode";
-import { dataProvider } from "@providers/data-provider";
+import { ColorModeContextProvider } from '@contexts/color-mode'
+import { dataProvider } from '@providers/data-provider'
 
 type RefineContextProps = {
-  defaultMode?: string;
-};
+  defaultMode?: string
+}
 
-export const RefineContext = (
-  props: React.PropsWithChildren<RefineContextProps>
-) => {
+export const RefineContext = (props: React.PropsWithChildren<RefineContextProps>) => {
   return (
     <SessionProvider>
       <App {...props} />
     </SessionProvider>
-  );
-};
+  )
+}
 
 type AppProps = {
-  defaultMode?: string;
-};
+  defaultMode?: string
+}
 
 const App = (props: React.PropsWithChildren<AppProps>) => {
-  const { data, status } = useSession();
-  const to = usePathname();
+  const { data, status } = useSession()
+  const to = usePathname()
 
-  if (status === "loading") {
-    return <span>loading...</span>;
+  if (status === 'loading') {
+    return <span>loading...</span>
   }
 
   const authProvider: AuthBindings = {
     login: async () => {
-      signIn("google", {
-        callbackUrl: to ? to.toString() : "/",
+      signIn('google', {
+        callbackUrl: to ? to.toString() : '/',
         redirect: true,
-      });
+      })
 
       return {
         success: true,
-      };
+      }
     },
     logout: async () => {
       signOut({
         redirect: true,
-        callbackUrl: "/login",
-      });
+        callbackUrl: '/login',
+      })
 
       return {
         success: true,
-      };
+      }
     },
     onError: async (error) => {
       if (error.response?.status === 401) {
         return {
           logout: true,
-        };
+        }
       }
 
       return {
         error,
-      };
+      }
     },
     check: async () => {
-      if (status === "unauthenticated") {
+      if (status === 'unauthenticated') {
         return {
           authenticated: false,
-          redirectTo: "/login",
-        };
+          redirectTo: '/login',
+        }
       }
 
       return {
         authenticated: true,
-      };
+      }
     },
     getPermissions: async () => {
-      return null;
+      return null
     },
     getIdentity: async () => {
       if (data?.user) {
-        const { user } = data;
+        const { user } = data
         return {
           name: user.name,
           avatar: user.image,
-        };
+        }
       }
 
-      return null;
+      return null
     },
-  };
+  }
 
-  const defaultMode = props?.defaultMode;
+  const defaultMode = props?.defaultMode
 
   return (
     <>
@@ -124,5 +122,5 @@ const App = (props: React.PropsWithChildren<AppProps>) => {
         </ColorModeContextProvider>
       </RefineKbarProvider>
     </>
-  );
-};
+  )
+}
