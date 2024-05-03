@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography'
 import { useGetIdentity } from '@refinedev/core'
 import { HamburgerMenu, RefineThemedLayoutV2HeaderProps } from '@refinedev/mui'
 import React, { useContext } from 'react'
+import LogoutButton from '@components/LogoutButton/LogoutButton'
 
 type IUser = {
   id: number
@@ -55,6 +56,8 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({ sticky = tru
                 <Avatar src={user?.avatar} alt={user?.name} />
               </Stack>
             )}
+
+            <LogoutButton />
           </Stack>
         </Stack>
       </Toolbar>

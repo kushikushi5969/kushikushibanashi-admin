@@ -1,12 +1,12 @@
 'use client'
 import { Suspense } from 'react'
 import { WelcomePage } from '@refinedev/core'
-import LogoutButton from '@components/LogoutButton/LogoutButton'
+import { Header } from '@components/Header/Header'
 
 export default function IndexPage() {
   return (
     <Suspense>
-      <LogoutButton />
+      <Header />
       {/* <WelcomePage /> */}
     </Suspense>
   )
