@@ -7,11 +7,11 @@ type AppProps = {
 }
 
 export default function CircularIndeterminate({ defaultMode }: AppProps) {
-  const bgColor = defaultMode === 'dark' ? 'background_black' : 'background_white'
+  const bgColor = defaultMode === 'dark' ? 'zinc-800' : 'background_white'
 
   return (
     <div className={`grid place-items-center h-dvh w-dvw bg-${bgColor}`}>
-      <Box sx={{ display: 'flex' }}>
+      <Box>
         <CircularProgress />
       </Box>
     </div>
