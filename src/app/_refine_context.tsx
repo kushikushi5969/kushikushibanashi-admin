@@ -1,8 +1,8 @@
 'use client'
 
-import { AuthBindings, GitHubBanner, Refine } from '@refinedev/core'
+import { AuthProvider, GitHubBanner, Refine } from '@refinedev/core'
 import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar'
-import { RefineSnackbarProvider, notificationProvider } from '@refinedev/mui'
+import { RefineSnackbarProvider, useNotificationProvider } from '@refinedev/mui'
 import { SessionProvider, signIn, signOut, useSession } from 'next-auth/react'
 import { usePathname } from 'next/navigation'
 import React from 'react'
@@ -37,13 +37,12 @@ const App = (props: React.PropsWithChildren<AppProps>) => {
     return <Loading defaultMode={props.defaultMode} />
   }
 
-  const authProvider: AuthBindings = {
+  const authProvider: AuthProvider = {
     login: async () => {
       signIn('google', {
         callbackUrl: to ? to.toString() : '/',
         redirect: true,
       })
-
       return {
         success: true,
       }
@@ -53,7 +52,6 @@ const App = (props: React.PropsWithChildren<AppProps>) => {
         redirect: true,
         callbackUrl: '/login',
       })
-
       return {
         success: true,
       }
@@ -64,7 +62,6 @@ const App = (props: React.PropsWithChildren<AppProps>) => {
           logout: true,
         }
       }
-
       return {
         error,
       }
@@ -76,7 +73,6 @@ const App = (props: React.PropsWithChildren<AppProps>) => {
           redirectTo: '/login',
         }
       }
-
       return {
         authenticated: true,
       }
@@ -92,7 +88,6 @@ const App = (props: React.PropsWithChildren<AppProps>) => {
           avatar: user.image,
         }
       }
-
       return null
     },
   }
@@ -101,14 +96,13 @@ const App = (props: React.PropsWithChildren<AppProps>) => {
 
   return (
     <>
-      <GitHubBanner />
       <RefineKbarProvider>
         <ColorModeContextProvider defaultMode={defaultMode}>
           <RefineSnackbarProvider>
             <Refine
               routerProvider={routerProvider}
               dataProvider={dataProvider}
-              notificationProvider={notificationProvider}
+              notificationProvider={useNotificationProvider}
               authProvider={authProvider}
               options={{
                 syncWithLocation: true,
