@@ -6,6 +6,7 @@ import { RefineSnackbarProvider, notificationProvider } from '@refinedev/mui'
 import { SessionProvider, signIn, signOut, useSession } from 'next-auth/react'
 import { usePathname } from 'next/navigation'
 import React from 'react'
+import Loading from '@components/Loading/Loading'
 
 import routerProvider from '@refinedev/nextjs-router'
 
@@ -33,7 +34,7 @@ const App = (props: React.PropsWithChildren<AppProps>) => {
   const to = usePathname()
 
   if (status === 'loading') {
-    return <span>loading...</span>
+    return <Loading defaultMode={props.defaultMode} />
   }
 
   const authProvider: AuthBindings = {
