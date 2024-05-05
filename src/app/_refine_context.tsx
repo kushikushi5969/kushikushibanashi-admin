@@ -34,9 +34,10 @@ type AppProps = {
 const App = (props: React.PropsWithChildren<AppProps>) => {
   const { data, status } = useSession()
   const to = usePathname()
+  const defaultMode = props?.defaultMode
 
   if (status === 'loading') {
-    return <Loading defaultMode={props.defaultMode} />
+    return <Loading defaultMode={defaultMode} />
   }
 
   const authProvider: AuthProvider = {
@@ -93,8 +94,6 @@ const App = (props: React.PropsWithChildren<AppProps>) => {
       return null
     },
   }
-
-  const defaultMode = props?.defaultMode
 
   return (
     <>

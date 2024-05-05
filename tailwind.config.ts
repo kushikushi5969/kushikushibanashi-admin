@@ -5,8 +5,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background_black: '#121212',
-        background_white: '#f9f9f9',
+        white: '#ffffff',
+        whitePale: '#f5f5f5',
+        black: '#121212',
+        grayLight: '#272727',
       },
     },
   },
