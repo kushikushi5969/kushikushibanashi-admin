@@ -4,6 +4,7 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
+import WebAssetOutlinedIcon from '@mui/icons-material/WebAssetOutlined'
 import { useLogin } from '@refinedev/core'
 import { ThemedTitleV2 } from '@refinedev/mui'
 
@@ -26,6 +27,8 @@ export default function Login() {
             fontSize: '22px',
             justifyContent: 'center',
           }}
+          icon={<WebAssetOutlinedIcon />}
+          text='くしくし話 管理画面'
         />
 
         <Button style={{ width: '240px' }} variant='contained' size='large' onClick={() => login({})}>
