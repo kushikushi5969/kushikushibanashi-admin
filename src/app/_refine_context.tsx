@@ -3,6 +3,8 @@
 import { AuthProvider, GitHubBanner, Refine } from '@refinedev/core'
 import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar'
 import { RefineSnackbarProvider, useNotificationProvider } from '@refinedev/mui'
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import { SessionProvider, signIn, signOut, useSession } from 'next-auth/react'
 import { usePathname } from 'next/navigation'
 import React from 'react'
@@ -103,6 +105,29 @@ const App = (props: React.PropsWithChildren<AppProps>) => {
               routerProvider={routerProvider}
               dataProvider={dataProvider}
               notificationProvider={useNotificationProvider}
+              resources={[
+                {
+                  name: 'HOME',
+                  list: '/home',
+                  meta: {
+                    icon: <HomeOutlinedIcon />,
+                  },
+                  options: {
+                    label: 'ホーム',
+                  },
+                },
+                {
+                  name: 'posts',
+                  list: '/posts',
+                  meta: {
+                    canDelete: true,
+                    icon: <ArticleOutlinedIcon />,
+                  },
+                  options: {
+                    label: '投稿',
+                  },
+                },
+              ]}
               authProvider={authProvider}
               options={{
                 syncWithLocation: true,
