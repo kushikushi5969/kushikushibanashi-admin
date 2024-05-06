@@ -33,14 +33,17 @@ model role {
 }
 
 model post {
-  id         Int      @id @default(autoincrement())
-  title      String   @db.VarChar(200)
-  content    String   @db.Text
-  author     user     @relation(fields: [author_id], references: [id])
-  author_id  Int
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  category   category[]
+  id           Int      @id @default(autoincrement())
+  title        String   @db.VarChar(200)
+  content      String   @db.Text
+  author       user     @relation(fields: [author_id], references: [id])
+  author_id    Int
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+  category     category[]
+  thumbnail    media?   @relation(name: "PostThumbnail", fields: [thumbnail_id], references: [id])
+  thumbnail_id Int?
+  media        media[]  @relation(name: "PostMedia")
 }
 
 model category {
@@ -49,4 +52,20 @@ model category {
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
   post       post[]
+}
+
+model media {
+  id             Int      @id @default(autoincrement())
+  url            String   @db.VarChar(255)
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+  posts          post[]   @relation(name: "PostMedia")
+  thumbnailPosts post[]   @relation(name: "PostThumbnail")
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+  // docsディレクトリに出力
+  output = "../docs/ER.md"
+  theme = "dark"
 }
