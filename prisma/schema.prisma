@@ -9,6 +9,44 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model user {
+  id         Int      @id @default(autoincrement())
+  name       String   @db.VarChar(255)
+  email      String   @unique @db.VarChar(255)
+  role       role     @relation(fields: [role_id], references: [id])
+  role_id    Int
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  post       post[]
+}
+
+model role {
+  id         Int      @id @default(autoincrement())
+  name       String   @db.VarChar(50)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  user       user[]
+}
+
+model post {
+  id         Int      @id @default(autoincrement())
+  title      String   @db.VarChar(200)
+  content    String   @db.Text
+  author     user     @relation(fields: [author_id], references: [id])
+  author_id  Int
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  category   category[]
+}
+
+model category {
+  id         Int      @id @default(autoincrement())
+  name       String   @db.VarChar(50)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  post       post[]
 }
