@@ -5,7 +5,7 @@ import Button from '@mui/material/Button'
 import Avatar from '@mui/material/Avatar'
 import Typography from '@mui/material/Typography'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import Cookies from 'js-cookie'
+import { useTranslation } from '@refinedev/core'
 
 interface LanguageSelectorProps {
   code: string
@@ -16,22 +16,14 @@ interface LanguageSelectorProps {
 export default function LanguageSelector() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
-  const currentLocale = Cookies.get('NEXT_LOCALE') || 'ja'
-
+  const { getLocale, changeLocale } = useTranslation()
+  const currentLocale = getLocale()
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget)
   }
-
   const handleClose = () => {
     setAnchorEl(null)
   }
-
-  const changeLocale = (lang: string) => {
-    Cookies.set('NEXT_LOCALE', lang)
-    window.location.reload()
-    handleClose()
-  }
-
   const languages: LanguageSelectorProps[] = [
     { code: 'ja', label: '日本語', flagUrl: '/images/flags/ja.svg' },
     { code: 'en', label: 'English', flagUrl: '/images/flags/en.svg' },
@@ -50,7 +42,10 @@ export default function LanguageSelector() {
         {languages.map((language) => (
           <MenuItem
             key={language.code}
-            onClick={() => changeLocale(language.code)}
+            onClick={() => {
+              changeLocale(language.code)
+              handleClose()
+            }}
             selected={language.code === currentLocale}
           >
             <Avatar sx={{ width: 22, height: 22, marginRight: 2 }} src={language.flagUrl} />
