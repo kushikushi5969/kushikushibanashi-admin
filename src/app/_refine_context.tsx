@@ -1,19 +1,20 @@
 'use client'
 
-import { AuthProvider, GitHubBanner, Refine } from '@refinedev/core'
-import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar'
-import { RefineSnackbarProvider, useNotificationProvider } from '@refinedev/mui'
+import { ColorModeContextProvider } from '@contexts/color-mode'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
+import { dataProvider } from '@providers/data-provider'
+import { AuthProvider, I18nProvider, Refine } from '@refinedev/core'
+import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar'
+import { RefineSnackbarProvider, useNotificationProvider } from '@refinedev/mui'
+import routerProvider from '@refinedev/nextjs-router'
 import { SessionProvider, signIn, signOut, useSession } from 'next-auth/react'
+import { useTranslation } from 'next-i18next'
 import { usePathname } from 'next/navigation'
 import React from 'react'
 import Loading from '@components/Loading/Loading'
-
-import routerProvider from '@refinedev/nextjs-router'
-
-import { ColorModeContextProvider } from '@contexts/color-mode'
-import { dataProvider } from '@providers/data-provider'
+// initialize i18n
+import '../providers/i18n'
 
 type RefineContextProps = {
   defaultMode?: string
@@ -33,11 +34,18 @@ type AppProps = {
 
 const App = (props: React.PropsWithChildren<AppProps>) => {
   const { data, status } = useSession()
+  const { t, i18n } = useTranslation()
   const to = usePathname()
   const defaultMode = props?.defaultMode
 
   if (status === 'loading') {
     return <Loading defaultMode={defaultMode} />
+  }
+
+  const i18nProvider: I18nProvider = {
+    translate: (key: string, params: Record<string, string>) => t(key, params),
+    changeLocale: (lang: string) => i18n.changeLanguage(lang),
+    getLocale: () => i18n.language,
   }
 
   const authProvider: AuthProvider = {
@@ -104,15 +112,14 @@ const App = (props: React.PropsWithChildren<AppProps>) => {
               routerProvider={routerProvider}
               dataProvider={dataProvider}
               notificationProvider={useNotificationProvider}
+              authProvider={authProvider}
+              i18nProvider={i18nProvider}
               resources={[
                 {
-                  name: 'HOME',
+                  name: 'homes',
                   list: '/home',
                   meta: {
                     icon: <HomeOutlinedIcon />,
-                  },
-                  options: {
-                    label: 'ホーム',
                   },
                 },
                 {
@@ -122,12 +129,8 @@ const App = (props: React.PropsWithChildren<AppProps>) => {
                     canDelete: true,
                     icon: <ArticleOutlinedIcon />,
                   },
-                  options: {
-                    label: '投稿',
-                  },
                 },
               ]}
-              authProvider={authProvider}
               options={{
                 syncWithLocation: true,
                 warnWhenUnsavedChanges: true,
