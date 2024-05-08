@@ -23,9 +23,10 @@ export default function RootLayout({
   const cookieStore = cookies()
   const theme = cookieStore.get('theme')
   const defaultMode = theme?.value === 'dark' ? 'dark' : 'light'
+  const lang = cookieStore.get('NEXT_LOCALE')
 
   return (
-    <html lang='ja'>
+    <html lang={lang?.value || 'ja'}>
       <body>
         <Suspense>
           <RefineContext defaultMode={defaultMode}>{children}</RefineContext>

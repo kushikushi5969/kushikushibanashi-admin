@@ -11,6 +11,7 @@ import { useGetIdentity } from '@refinedev/core'
 import { HamburgerMenu, RefineThemedLayoutV2HeaderProps } from '@refinedev/mui'
 import React, { useContext } from 'react'
 import LogoutButton from '@components/LogoutButton/LogoutButton'
+import LanguageSelector from '@components/LanguageSelector/LanguageSelector'
 
 type IUser = {
   id: number
@@ -29,6 +30,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({ sticky = tru
         <Stack direction='row' width='100%' justifyContent='flex-end' alignItems='center'>
           <HamburgerMenu />
           <Stack direction='row' width='100%' justifyContent='flex-end' alignItems='center'>
+            <LanguageSelector />
             <IconButton
               color='inherit'
               onClick={() => {
