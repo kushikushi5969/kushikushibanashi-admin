@@ -118,6 +118,20 @@
   "homes": {
     "homes": "Home"
   },
+  "categories": {
+    "categories": "categories",
+    "fields": {
+      "id": "Id",
+      "title": "Title",
+      "createdAt": "Created At"
+    },
+    "titles": {
+      "create": "Create Category",
+      "edit": "Edit Category",
+      "list": "List of categories",
+      "show": "Show Category"
+    }
+  },
   "posts": {
     "posts": "Thoughts blog",
     "fields": {

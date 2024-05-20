@@ -76,6 +76,20 @@
   "homes": {
     "homes": "ホーム"
   },
+  "categories": {
+    "categories": "カテゴリー",
+    "fields": {
+      "id": "Id",
+      "title": "カテゴリー名",
+      "createdAt": "作成日"
+    },
+    "titles": {
+      "create": "カテゴリー作成",
+      "edit": "カテゴリー編集",
+      "list": "カテゴリー一覧",
+      "show": "詳細"
+    }
+  },
   "posts": {
     "posts": "感想ブログ",
     "fields": {
