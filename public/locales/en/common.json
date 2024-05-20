@@ -121,9 +121,10 @@
   "categories": {
     "categories": "categories",
     "fields": {
-      "id": "Id",
-      "title": "Title",
-      "createdAt": "Created At"
+      "id": "ID",
+      "name": "Name",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At"
     },
     "titles": {
       "create": "Create Category",
@@ -135,7 +136,7 @@
   "posts": {
     "posts": "Thoughts blog",
     "fields": {
-      "id": "Id",
+      "id": "ID",
       "title": "Title",
       "category": "Category",
       "status": {

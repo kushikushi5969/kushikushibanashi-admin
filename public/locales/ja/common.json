@@ -79,9 +79,10 @@
   "categories": {
     "categories": "カテゴリー",
     "fields": {
-      "id": "Id",
-      "title": "カテゴリー名",
-      "createdAt": "作成日"
+      "id": "ID",
+      "name": "カテゴリー名",
+      "createdAt": "作成日",
+      "updatedAt": "更新日"
     },
     "titles": {
       "create": "カテゴリー作成",
@@ -107,5 +108,5 @@
       "show": "感想ブログを表示する"
     }
   },
-  "table": { "actions": "行動" }
+  "table": { "actions": "編集 / 詳細 / 削除" }
 }

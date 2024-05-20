@@ -132,9 +132,10 @@
   "categories": {
     "categories": "Kategorien",
     "fields": {
-      "id": "Id",
-      "title": "Titel",
-      "createdAt": "Erstellt am"
+      "id": "ID",
+      "name": "Name",
+      "createdAt": "Erstellt am",
+      "updatedAt": "Aktualisiert am"
     },
     "titles": {
       "create": "Erstellen",
