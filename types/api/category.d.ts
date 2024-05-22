@@ -1,3 +1,4 @@
+import { FindManyParams } from '../app/prisma'
 /**
  * カテゴリーオブジェクト
  */
@@ -20,6 +21,14 @@ export interface UpdateCategoryRequest {}
 export interface CreateCategoryRequest {}
 
 export interface GetCategoryResponse {}
+
+export interface FindManyCategoryParams extends FindManyParams {
+  where?: {
+    OR: {
+      name: { contains: string }
+    }
+  }
+}
 
 /**
  * カテゴリーの一覧取得応答
