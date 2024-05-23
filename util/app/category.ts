@@ -32,6 +32,18 @@ export class Category {
 }
 
 export class CategoryUtil {
+  static async findById(id: number): Promise<Category | null> {
+    const data = await prisma.category.findUnique({
+      where: {
+        id,
+      },
+    })
+    if (!data) {
+      return null
+    }
+    return new Category(data)
+  }
+
   async findMany(prop: FindManyCategoryParams): Promise<GetListResponse | GetCategoryListResponse[]> {
     if (Object.keys(prop).length === 0) {
       const data = await prisma.category.findMany({
