@@ -32,6 +32,20 @@ export class Category {
 }
 
 export class CategoryUtil {
+  async create(category: Category): Promise<Category> {
+    if (category.categoryName.length > 50) {
+      throw new Error('Name length is too long')
+    }
+    const data = await prisma.category.create({
+      data: {
+        name: category.categoryName,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+    })
+    return new Category(data)
+  }
+
   async update(category: Category): Promise<Category> {
     const data = await prisma.category.update({
       where: {

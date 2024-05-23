@@ -24,7 +24,13 @@ export interface UpdateCategoryRequest {
   categoryName: string
 }
 
-export interface CreateCategoryRequest {}
+export interface CreateCategoryRequest {
+  /**
+   * カテゴリー
+   * maxlength: 50
+   */
+  categoryName: string
+}
 
 export interface GetCategoryResponse {}
 

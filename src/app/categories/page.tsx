@@ -84,13 +84,14 @@ export default function CategoriesList() {
   const language = localeMap[currentLocale]
 
   return (
-    <List>
+    <List canCreate>
       <DataGrid
         {...dataGridProps}
         columns={columns}
         localeText={language.components.MuiDataGrid.defaultProps.localeText}
         slots={{ toolbar: GridToolbar }}
         autoHeight
+        filterDebounceMs={700}
       />
     </List>
   )
