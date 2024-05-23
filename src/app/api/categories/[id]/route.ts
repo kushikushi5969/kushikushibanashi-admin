@@ -69,3 +69,31 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     return NextResponse.json(ServerError, { status: 500 })
   }
 }
+
+/**
+ * カテゴリーを削除する
+ * @param req
+ * @param params
+ */
+export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+  // リクエストのセッション情報を検証
+  const session = await getServerSession(authOptions)
+  if (!session) {
+    return NextResponse.json(UnAuthorized, { status: 401 })
+  }
+  const id = params.id
+  if (!id) {
+    return NextResponse.json(BadRequest, { status: 400 })
+  }
+  try {
+    const categoryUtil = new CategoryUtil()
+    await categoryUtil.delete(Number(id))
+    return NextResponse.json({ message: 'Deleted.' }, { status: 200 })
+  } catch (e: any) {
+    // P2025エラー (データが存在しない場合)は400エラー
+    if (e.code === 'P2025') {
+      return NextResponse.json(BadRequest, { status: 400 })
+    }
+    return NextResponse.json(ServerError, { status: 500 })
+  }
+}

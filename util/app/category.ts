@@ -59,6 +59,14 @@ export class CategoryUtil {
     return new Category(data)
   }
 
+  async delete(id: number) {
+    await prisma.category.delete({
+      where: {
+        id,
+      },
+    })
+  }
+
   static async findById(id: number): Promise<Category | null> {
     const data = await prisma.category.findUnique({
       where: {
