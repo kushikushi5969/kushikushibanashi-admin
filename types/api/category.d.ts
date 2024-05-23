@@ -16,7 +16,13 @@ export interface CategoryData {
   updated_at?: Date
 }
 
-export interface UpdateCategoryRequest {}
+export interface UpdateCategoryRequest {
+  /**
+   * カテゴリー
+   * maxlength: 50
+   */
+  categoryName: string
+}
 
 export interface CreateCategoryRequest {}
 

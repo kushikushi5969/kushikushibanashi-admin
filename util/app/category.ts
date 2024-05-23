@@ -13,7 +13,7 @@ export class Category {
     this.categoryName = data.name
   }
   update(name: string) {
-    if (name.length > 200) {
+    if (name.length > 50) {
       throw new Error('Name length is too long')
     }
     this.categoryName = name
@@ -32,6 +32,19 @@ export class Category {
 }
 
 export class CategoryUtil {
+  async update(category: Category): Promise<Category> {
+    const data = await prisma.category.update({
+      where: {
+        id: category.categoryId,
+      },
+      data: {
+        name: category.categoryName,
+        updated_at: new Date(),
+      },
+    })
+    return new Category(data)
+  }
+
   static async findById(id: number): Promise<Category | null> {
     const data = await prisma.category.findUnique({
       where: {

@@ -134,6 +134,7 @@ const App = (props: React.PropsWithChildren<AppProps>) => {
                 {
                   name: 'categories',
                   list: '/categories',
+                  edit: '/categories/edit/:id',
                   show: '/categories/show/:id',
                   meta: {
                     canDelete: true,
