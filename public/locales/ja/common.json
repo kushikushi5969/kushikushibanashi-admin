@@ -39,19 +39,19 @@
       "backHome": "ホームへ戻る"
     }
   },
-  "actions": { "list": "リスト", "create": "作成", "edit": "編集", "show": "ショー" },
+  "actions": { "list": "リスト", "create": "新規作成", "edit": "編集", "show": "詳細" },
   "buttons": {
-    "create": "作成",
-    "save": "セーブ",
+    "create": "新規作成",
+    "save": "保存",
     "logout": "ログアウト",
     "delete": "削除",
     "edit": "編集",
     "cancel": "キャンセル",
-    "confirm": "本当か？",
+    "confirm": "本当によろしいですか？",
     "filter": "フィルター",
     "clear": "クリア",
     "refresh": "リフレッシュ",
-    "show": "ショー",
+    "show": "詳細",
     "undo": "元に戻す",
     "import": "輸入",
     "clone": "クローン",
@@ -59,14 +59,14 @@
   },
   "warnWhenUnsavedChanges": "本当に帰りたいのか？救われていない変化がある。",
   "notifications": {
-    "success": "成功",
+    "success": "成功しました",
     "error": "エラー (ステータスコード:{{statusCode}})",
     "undoable": "{{seconds}} 、取り消すことができます。",
-    "createSuccess": "作成に成功{{resource}}",
+    "createSuccess": "新規作成に成功しました：{{resource}}",
     "createError": "{{resource}} を作成する際にエラーが発生しました（ステータスコード：{{statusCode}} ）。",
-    "deleteSuccess": "削除に成功{{resource}}",
+    "deleteSuccess": "削除に成功しました：{{resource}}",
     "deleteError": "{{resource}} 削除時のエラー (ステータスコード:{{statusCode}})",
-    "editSuccess": "編集に成功{{resource}}",
+    "editSuccess": "編集に成功しました：{{resource}}",
     "editError": "{{resource}} 編集時のエラー (ステータスコード:{{statusCode}})",
     "importProgress": "インポートする：{{processed}}/{{total}}"
   },
@@ -98,15 +98,31 @@
       "title": "タイトル",
       "category": "カテゴリー",
       "status": { "title": "ステータス", "published": "出版", "draft": "ドラフト", "rejected": "不採用" },
-      "content": "内容",
+      "content": "記事内容",
+      "thumbnail": "サムネイル",
+      "contentCharacterCount": "文字",
       "createdAt": "作成日時"
     },
     "titles": {
-      "create": "新規作成作成",
+      "create": "新規作成",
       "edit": "感想ブログを編集する",
       "list": "感想ブログ",
-      "show": "感想ブログを表示する"
+      "show": "感想ブログ 詳細"
     }
   },
-  "table": { "actions": "編集 / 詳細 / 削除" }
+  "table": {
+    "actions": "編集 / 詳細 / 削除",
+    "createdAt": "作成日",
+    "updatedAt": "更新日"
+  },
+  "validation": {
+    "required": "入力必須項目です",
+    "minLength": "最小文字数は{{min}}です",
+    "maxLength": "最大文字数は{{max}}です",
+    "minValue": "最小値は{{min}}です",
+    "maxValue": "最大値は{{max}}です",
+    "oneOf": "{{options}}のいずれかを選択してください",
+    "regex": "正規表現{{pattern}}に一致する必要があります",
+    "unique": "既に存在します"
+  }
 }

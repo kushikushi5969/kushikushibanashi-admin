@@ -120,6 +120,9 @@
         "rejected": "Abgelehnt"
       },
       "content": "Inhalh",
+      "thumbnail": "Thumbnail",
+      "contentWords": "Wörter:",
+      "contentCharacterCount": "Zeichenanzahl:",
       "createdAt": "Erstellt am"
     },
     "titles": {
@@ -141,10 +144,22 @@
       "create": "Erstellen",
       "edit": "Bearbeiten",
       "list": "Einträge",
-      "show": "Eintrag zeigen"
+      "show": "Kategoriedetails"
     }
   },
   "table": {
-    "actions": "Aktionen"
+    "actions": "Aktionen",
+    "createdAt": "Erstellt am",
+    "updatedAt": "Aktualisiert am"
+  },
+  "validation": {
+    "required": "Erforderlich",
+    "minLength": "Mindestens {{min}} Zeichen",
+    "maxLength": "Maximal {{max}} Zeichen",
+    "minValue": "Mindestens {{min}}",
+    "maxValue": "Maximal {{max}}",
+    "oneOf": "Muss einer der folgenden Werte sein: {{values}}",
+    "regex": "Ungültiges Format",
+    "unique": "Muss eindeutig sein"
   }
 }
