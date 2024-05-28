@@ -1,3 +1,4 @@
+import { FindManyParams } from '../app/prisma'
 /**
  * 感想ブログオブジェクト
  */
@@ -16,22 +17,70 @@ export interface PostData {
    */
   content: string
   /**
+   * カテゴリーID
+   */
+  category_id: number
+  /**
    * サムネイルID
    */
-  thumbnail_id?: number
+  thumbnail_id?: number | null
   /**
    * 作成ユーザーID
    */
-  author_id?: number
+  author_id: number
   created_at?: Date
   updated_at?: Date
 }
 
-export interface UpdatePostRequest {}
+export interface UpdatePostRequest {
+  /**
+   * 記事タイトル
+   * maxlength: 200
+   */
+  title: string
+  /**
+   * 記事コンテンツ
+   */
+  content: string
+  /**
+   * カテゴリーID
+   */
+  categoryId: number
+  /**
+   * サムネイルID
+   */
+  thumbnailId: number
+}
 
-export interface CreatePostRequest {}
+export interface CreatePostRequest {
+  /**
+   * 記事タイトル
+   * maxlength: 200
+   */
+  title: string
+  /**
+   * 記事コンテンツ
+   */
+  content: string
+  /**
+   * カテゴリーID
+   */
+  categoryId: number
+  /**
+   * サムネイルID
+   */
+  thumbnailId?: number
+}
 
-export interface GetPostResponse {}
+export interface FindManyPostParams extends FindManyParams {
+  where?: {
+    OR?: {
+      title: { contains: string }
+      content: { contains: string }
+    }
+    category_id: number
+  }
+}
 
 /**
  * 感想ブログの一覧取得応答
@@ -40,14 +89,11 @@ export interface GetPostListResponse {
   id: number
   title: string
   content: string
-  thumbnail_id: number
-  author_id: number
-  category: {
+  category_id: {
     id: number
     name: string
   }
-  media: {
-    id: number
-    url: string
-  }
+  thumbnail_id?: number | null
+  created_at: Date
+  updated_at: Date
 }
