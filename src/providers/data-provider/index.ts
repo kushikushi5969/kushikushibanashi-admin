@@ -8,9 +8,9 @@ const axiosInstance: AxiosInstance = axios.create({
 
 export const dataProvider: DataProvider = {
   getApiUrl: () => apiUrl as string,
-  getList: async ({ resource, pagination, sorters, filters, meta }) => {
-    const { headers: headersFromMeta, method } = meta ?? {}
 
+  getList: async ({ resource, pagination, sorters, filters, meta }) => {
+    const { headers: headersFromMeta } = meta ?? {}
     // init query object for pagination and sorting
     const query: {
       _start?: number
@@ -18,40 +18,66 @@ export const dataProvider: DataProvider = {
       _sort?: string
       _order?: string
     } = {}
-
     const generatedPagination = generatePagination(pagination)
     if (generatedPagination) {
       const { _start, _end } = generatedPagination
       query._start = _start
       query._end = _end
     }
-
     const generatedSort = generateSort(sorters)
     if (generatedSort) {
       const { _sort, _order } = generatedSort
       query._sort = _sort.join(',')
       query._order = _order.join(',')
     }
-
     const queryFilters = generateFilter(filters)
-
-    const { data } = await axiosInstance.get(resource, {
+    const result = await axiosInstance.get(resource, {
       params: { ...query, ...queryFilters },
       headers: headersFromMeta,
     })
 
+    // data { data: [], total: number }
+    return result.data
+  },
+
+  getOne: async ({ resource, id, meta }) => {
+    const { headers: headersFromMeta } = meta ?? {}
+    const data = await axiosInstance.get(`${resource}/${id}`, {
+      headers: headersFromMeta,
+    })
     return data
   },
-  getOne: ({ resource, id, meta }) => Promise,
-  create: ({ resource, variables, meta }) => Promise,
-  update: ({ resource, id, variables, meta }) => Promise,
-  deleteOne: ({ resource, id, variables, meta }) => Promise,
-  // optional methods
-  // getMany: ({ resource, ids, meta }) => Promise,
-  // createMany: ({ resource, variables, meta }) => Promise,
-  // deleteMany: ({ resource, ids, variables, meta }) => Promise,
-  // updateMany: ({ resource, ids, variables, meta }) => Promise,
-  // custom: ({ url, method, filters, sorters, payload, query, headers, meta }) => Promise,
+
+  create: async ({ resource, variables, meta }) => {
+    const { headers: headersFromMeta } = meta ?? {}
+    const data = await axiosInstance.post(resource, variables, {
+      headers: headersFromMeta,
+    })
+    return data
+  },
+
+  update: async ({ resource, id, variables, meta }) => {
+    const { headers: headersFromMeta } = meta ?? {}
+    const data = await axiosInstance.put(`${resource}/${id}`, variables, {
+      headers: headersFromMeta,
+    })
+    return data
+  },
+
+  deleteOne: async ({ resource, id, variables, meta }) => {
+    const { headers: headersFromMeta } = meta ?? {}
+    const data = await axiosInstance.delete(`${resource}/${id}`, {
+      headers: headersFromMeta,
+    })
+    return data
+  },
+
+  getMany: async ({ resource, ids, meta }) => {
+    const { headers: headersFromMeta } = meta ?? {}
+    const foundData = ids.map((id) => axiosInstance.get(`${resource}/${id}`, { headers: headersFromMeta }))
+    const results = await Promise.all(foundData)
+    return { data: results.map((result) => result.data) }
+  },
 }
 
 // Convert axios errors to HttpError on every response.
