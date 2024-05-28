@@ -37,12 +37,11 @@ erDiagram
     DateTime created_at
     DateTime updated_at
     }
-
     "user" o|--|| "role" : "role"
     "user" o{--}o "post" : "post"
     "role" o{--}o "user" : "user"
     "post" o|--|| "user" : "author"
-    "post" o{--}o "category" : "category"
+    "post" o|--|| "category" : "category"
     "post" o|--|o "media" : "thumbnail"
     "post" o{--}o "media" : "media"
     "category" o{--}o "post" : "post"
