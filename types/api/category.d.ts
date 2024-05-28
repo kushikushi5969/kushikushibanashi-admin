@@ -32,8 +32,6 @@ export interface CreateCategoryRequest {
   categoryName: string
 }
 
-export interface GetCategoryResponse {}
-
 export interface FindManyCategoryParams extends FindManyParams {
   where?: {
     OR: {

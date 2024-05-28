@@ -1,5 +1,5 @@
 import prisma from '@/app/lib/prisma'
-import { CategoryData, FindManyCategoryParams, GetCategoryListResponse } from '../../types/api/category'
+import { CategoryData, FindManyCategoryParams } from '../../types/api/category'
 import { GetListResponse } from '@refinedev/core'
 
 export class Category {
@@ -79,17 +79,7 @@ export class CategoryUtil {
     return new Category(data)
   }
 
-  async findMany(prop: FindManyCategoryParams): Promise<GetListResponse | GetCategoryListResponse[]> {
-    if (Object.keys(prop).length === 0) {
-      const data = await prisma.category.findMany({
-        select: {
-          id: true,
-          name: true,
-        },
-      })
-      return data
-    }
-
+  async findMany(prop: FindManyCategoryParams): Promise<GetListResponse> {
     let queryOptions = {}
     queryOptions = {
       ...prop,
