@@ -1,6 +1,13 @@
 'use client'
 
-import { DataGrid, GridColDef, getGridStringOperators, GridToolbar } from '@mui/x-data-grid'
+import {
+  DataGrid,
+  GridColDef,
+  getGridStringOperators,
+  GridRenderCellParams,
+  GridToolbar,
+  GridValueGetterParams,
+} from '@mui/x-data-grid'
 import { deDE, enUS, jaJP } from '@mui/x-data-grid/locales'
 import { Localization } from '@mui/x-data-grid/utils/getGridLocalization'
 import { useTranslation } from '@refinedev/core'
@@ -8,7 +15,7 @@ import { DeleteButton, EditButton, List, ShowButton, useDataGrid } from '@refine
 import React from 'react'
 
 export default function CategoriesList() {
-  const { dataGridProps } = useDataGrid()
+  const { dataGridProps } = useDataGrid({})
   const { translate, getLocale } = useTranslation()
 
   const columns = React.useMemo<GridColDef[]>(
@@ -35,7 +42,7 @@ export default function CategoriesList() {
         type: 'date',
         minWidth: 150,
         filterable: false,
-        valueGetter: (params) => {
+        valueGetter: (params: GridValueGetterParams) => {
           const date = params.value ? new Date(params.value) : null
           return date && !isNaN(date.getTime()) ? date : null
         },
@@ -46,7 +53,7 @@ export default function CategoriesList() {
         type: 'date',
         minWidth: 150,
         filterable: false,
-        valueGetter: (params) => {
+        valueGetter: (params: GridValueGetterParams) => {
           const date = params.value ? new Date(params.value) : null
           return date && !isNaN(date.getTime()) ? date : null
         },
@@ -58,7 +65,7 @@ export default function CategoriesList() {
         filterable: false,
         hideable: false,
         disableColumnMenu: true,
-        renderCell: function render({ row }) {
+        renderCell: function render({ row }: GridRenderCellParams) {
           return (
             <>
               <EditButton hideText recordItemId={row.id} />
