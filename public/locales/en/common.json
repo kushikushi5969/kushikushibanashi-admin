@@ -118,10 +118,25 @@
   "homes": {
     "homes": "Home"
   },
+  "categories": {
+    "categories": "categories",
+    "fields": {
+      "id": "ID",
+      "name": "Name",
+      "createdAt": "Created At",
+      "updatedAt": "Updated At"
+    },
+    "titles": {
+      "create": "Create Category",
+      "edit": "Edit Category",
+      "list": "List of categories",
+      "show": "Show Category"
+    }
+  },
   "posts": {
     "posts": "Thoughts blog",
     "fields": {
-      "id": "Id",
+      "id": "ID",
       "title": "Title",
       "category": "Category",
       "status": {
@@ -131,6 +146,9 @@
         "rejected": "Rejected"
       },
       "content": "Content",
+      "thumbnail": "Thumbnail",
+      "contentWordsCount": "Words:",
+      "contentCharacterCount": "Characters:",
       "createdAt": "Created At"
     },
     "titles": {
@@ -141,7 +159,9 @@
     }
   },
   "table": {
-    "actions": "Actions"
+    "actions": "Actions",
+    "createdAt": "Created At",
+    "updatedAt": "Updated At"
   },
   "documentTitle": {
     "default": "refine",
@@ -159,5 +179,15 @@
     "error": "auto save failure",
     "loading": "saving...",
     "idle": "waiting for changes"
+  },
+  "validation": {
+    "required": "This field is required",
+    "minLength": "This field must be at least {{min}} characters",
+    "maxLength": "This field must be at most {{max}} characters",
+    "minValue": "This field must be greater than or equal to {{min}}",
+    "maxValue": "This field must be less than or equal to {{max}}",
+    "oneOf": "This field must be one of the following: {{values}}",
+    "regex": "This field does not match the expected pattern",
+    "unique": "This field must be unique"
   }
 }

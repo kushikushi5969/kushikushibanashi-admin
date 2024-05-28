@@ -1,0 +1,113 @@
+/* CKEditorのheadingスタイル */
+/* 外部アプリケーションでも同様のスタイルを適用予定 */
+
+.ck.post-content {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 0px 19px -5px #000000;
+  color: #111;
+  padding: 1rem;
+}
+
+.ck.post-content pre[data-language]:after {
+  content: attr(data-language);
+  position: absolute;
+}
+
+.ck.post-content pre[data-language]:after {
+  background: var(--ck-color-code-block-label-background);
+  color: #fff;
+  font-family: var(--ck-font-face);
+  font-size: 10px;
+  line-height: 16px;
+  padding: var(--ck-spacing-tiny) var(--ck-spacing-medium);
+  right: 10px;
+  top: -1px;
+  white-space: nowrap;
+}
+
+.ck-content h2,
+.ck-content h3,
+.ck-content h4 {
+  font-weight: 700;
+}
+.ck-content h2 {
+  font-size: 20px;
+}
+.ck-content h3 {
+  font-size: 17px;
+}
+.ck-content h4 {
+  font-size: 14px;
+}
+
+/* エディタプラグイン：styles */
+.ck.ck-content h3.category {
+  font-family: 'Bebas Neue';
+  font-size: 20px;
+  font-weight: bold;
+  color: #d1d1d1;
+  letter-spacing: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.ck.ck-content h2.document-title {
+  font-family: 'Bebas Neue';
+  font-size: 50px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.ck.ck-content h3.document-subtitle {
+  font-size: 20px;
+  color: #e91e63;
+  margin: 0 0 1em;
+  font-weight: normal;
+  padding: 0;
+}
+
+.ck-content pre {
+  background: hsla(0, 0%, 78%, 0.3);
+  border: 1px solid #c4c4c4;
+  border-radius: 2px;
+  color: #353535;
+  direction: ltr;
+  font-style: normal;
+  min-width: 200px;
+  padding: 1em;
+  position: relative;
+  tab-size: 4;
+  text-align: left;
+  white-space: pre-wrap;
+}
+
+.ck.ck-content pre.fancy-code {
+  border: 0;
+  margin-left: 2em;
+  margin-right: 2em;
+  border-radius: 10px;
+}
+
+.ck.ck-content pre.fancy-code::before {
+  content: '';
+  display: block;
+  height: 13px;
+  background: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1NCAxMyI+CiAgPGNpcmNsZSBjeD0iNi41IiBjeT0iNi41IiByPSI2LjUiIGZpbGw9IiNGMzZCNUMiLz4KICA8Y2lyY2xlIGN4PSIyNi41IiBjeT0iNi41IiByPSI2LjUiIGZpbGw9IiNGOUJFNEQiLz4KICA8Y2lyY2xlIGN4PSI0Ny41IiBjeT0iNi41IiByPSI2LjUiIGZpbGw9IiM1NkM0NTMiLz4KPC9zdmc+Cg==);
+  margin-bottom: 8px;
+  background-repeat: no-repeat;
+}
+
+.ck.ck-content pre.fancy-code-dark {
+  background: #272822;
+  color: #fff;
+  box-shadow: 5px 5px 0 #0000001f;
+}
+
+.ck.ck-content pre.fancy-code-bright {
+  background: #dddfe0;
+  color: #000;
+  box-shadow: 5px 5px 0 #b3b3b3;
+}

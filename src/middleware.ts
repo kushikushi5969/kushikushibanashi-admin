@@ -13,3 +13,9 @@ export default withAuth(
     },
   }
 )
+export const config = {
+  matcher: {
+    // API routeは認証から除外し各エンドポイントで対応する
+    source: '/((?!api/).*)',
+  },
+}

@@ -3,6 +3,7 @@
 import { ColorModeContextProvider } from '@contexts/color-mode'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
+import CategoryIcon from '@mui/icons-material/Category'
 import { dataProvider } from '@providers/data-provider'
 import { AuthProvider, I18nProvider, Refine } from '@refinedev/core'
 import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar'
@@ -125,9 +126,23 @@ const App = (props: React.PropsWithChildren<AppProps>) => {
                 {
                   name: 'posts',
                   list: '/posts',
+                  create: '/posts/create',
+                  edit: '/posts/edit/:id',
+                  show: '/posts/show/:id',
                   meta: {
                     canDelete: true,
                     icon: <ArticleOutlinedIcon />,
+                  },
+                },
+                {
+                  name: 'categories',
+                  list: '/categories',
+                  create: '/categories/create',
+                  edit: '/categories/edit/:id',
+                  show: '/categories/show/:id',
+                  meta: {
+                    canDelete: true,
+                    icon: <CategoryIcon />,
                   },
                 },
               ]}
