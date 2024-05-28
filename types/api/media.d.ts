@@ -1,3 +1,4 @@
+import { FindManyParams } from '../app/prisma'
 /**
  * メディアオブジェクト
  */
@@ -20,6 +21,14 @@ export interface UpdateMediaRequest {}
 export interface CreateMediaRequest {}
 
 export interface GetMediaResponse {}
+
+export interface FindManyMediaParams extends FindManyParams {
+  where?: {
+    OR: {
+      url: { contains: string }
+    }
+  }
+}
 
 /**
  * メディアの一覧取得応答
